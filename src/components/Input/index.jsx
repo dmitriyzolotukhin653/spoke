@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import "./input.css";
 
-const Input = ({ placeholder, value, onChange, edit, ...props }) => {
+const Input = ({ placeholder = "add todo", value, onChange, edit, ...props }) => {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
@@ -12,6 +12,7 @@ const Input = ({ placeholder, value, onChange, edit, ...props }) => {
 
   return (
     <input
+      data-testid="input"
       className={classNames("input", {
         input_edit: edit,
       })}

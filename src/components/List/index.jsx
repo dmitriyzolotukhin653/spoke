@@ -5,12 +5,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { db } from "../../firebase";
 import { todoSelector } from "../../store/reducers/todoReducer";
-import {
-  completeTodoRequest,
-  deleteTodoRequest,
-  todoFetch,
-  todoLoading,
-} from "../../store/reducers/todoReducer/actions";
+import { todoFetch, todoLoading } from "../../store/reducers/todoReducer/actions";
 
 import ListItem from "./ListItem";
 import Spinner from "../Spinner";
@@ -20,19 +15,6 @@ import "./list.css";
 const List = () => {
   const dispatch = useDispatch();
   const { todoList, loading, error } = useSelector(todoSelector);
-
-  const toggleCompleteHandler = React.useCallback(
-    async (todo) => dispatch(completeTodoRequest(todo)),
-    [dispatch]
-  );
-
-  const deleteTodoHandler = React.useCallback(
-    async (id, ev) => {
-      ev.stopPropagation();
-      dispatch(deleteTodoRequest(id));
-    },
-    [dispatch]
-  );
 
   React.useEffect(() => {
     const q = query(collection(db, "todoList"), orderBy("createdAt", "desc"));
@@ -59,12 +41,7 @@ const List = () => {
         {!!todoList.length &&
           todoList.map((todo) => (
             <CSSTransition key={todo.id} timeout={500} classNames="item">
-              <ListItem
-                key={todo.createdAt}
-                completedHandler={toggleCompleteHandler}
-                deleteHandler={deleteTodoHandler}
-                todo={todo}
-              />
+              <ListItem key={todo.createdAt} todo={todo} />
             </CSSTransition>
           ))}
       </TransitionGroup>

@@ -22,8 +22,9 @@ const Form = () => {
   );
 
   return (
-    <form className="form" onSubmit={setTodoHandler}>
+    <form className="form" onSubmit={setTodoHandler} data-testid="form">
       <Input
+        data-testid="input"
         placeholder="Write something..."
         value={title}
         onChange={({ target }) => setTile(target.value)}

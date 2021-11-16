@@ -56,12 +56,13 @@ function* toggleCompleteSagaWorker(action) {
 
 function* updateTodoSagaWorker(action) {
   try {
-    const { todo, value } = action.payload;
+    const { todo, title } = action.payload;
     const todoDoc = yield call(doc, db, "todoList", todo.id);
 
-    yield call(updateDoc, todoDoc, { title: value });
+    yield call(updateDoc, todoDoc, { title });
   } catch (error) {
     yield put(todoError);
+    console.log(error);
   }
 }
 
