@@ -15,3 +15,16 @@
   font-size: 15px;
   font-weight: 300;
 }
+
+.input_edit {
+  animation: show 0.3s forwards;
+}
+
+@keyframes show {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
