@@ -1,0 +1,10 @@
+.layout {
+  position: relative;
+
+  padding: 80px 20px;
+  height: 100vh;
+  overflow: auto;
+
+  color: #fff;
+  background-color: #1c1e33;
+}
